@@ -263,6 +263,9 @@ fn recons_c(r: usize, c: usize, stride: usize, bytes_per_pixel: u8, recon: *std.
 fn create_window(width: i32, height: i32, reconstructed_data: []const usize, bytes_per_pixel: u8) !void {
     raylib.initWindow(width, height, "Png Viewer");
     defer raylib.closeWindow();
+    raylib.setWindowState(.{
+        .window_undecorated = true,
+    });
 
     raylib.setTargetFPS(60);
     const texture = try draw_image(reconstructed_data, width, height, bytes_per_pixel);
